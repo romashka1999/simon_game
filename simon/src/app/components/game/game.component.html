@@ -1,0 +1,19 @@
+
+
+<div class="container">
+    <div>
+        <app-game-button [active]="colors.red" color="red" (guess)="onPlayerGuess($event)"></app-game-button>
+    </div>
+    <div>
+        <app-game-button [active]="colors.blue" color="blue" (guess)="onPlayerGuess($event)"></app-game-button>
+        <div class="middle">{{count}}</div>
+        <app-game-button [active]="colors.green" color="green" (guess)="onPlayerGuess($event)"></app-game-button>
+    </div>
+    <div>
+        <app-game-button [active]="colors.yellow" color="yellow" (guess)="onPlayerGuess($event)"></app-game-button>
+    </div>
+
+    <button class="startBut" (click)="onStartGame()">START GAME</button>
+</div>
+
+

@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.middle {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+
+.startBut {
+    background-color: rgb(177, 13, 13);
+    border-radius: 10px;
+    height: 70px;
+    width: 300px;
+    cursor: pointer;
+    color: whitesmoke;
+    font-size: 30px;
+    margin-top: 20px;
+}
+@media only screen and (max-width: 350px) {
+    .middle {
+        width: 20px;
+    }
+
+    .startBut {
+        font-size: 15px;
+        height: 50px;
+        width: 170px;
+    }
+}
