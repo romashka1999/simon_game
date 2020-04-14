@@ -10,6 +10,7 @@ import { sleep } from 'src/app/helpers/helper';
 export class GameComponent implements OnInit {
 
   playerMove: boolean = false;
+  gameIsRunning: boolean= false;
   count: number;
   colors: any = {
     red: false,
@@ -26,9 +27,10 @@ export class GameComponent implements OnInit {
       if(state.defeated) {
         this.count = 1;
         alert('you defeated try again');
+        this.gameIsRunning = false;
         return
       }
-      if (this.count !== state.count) {
+      if (this.count !== state.count || state.count === 1) {
         this.playerMove = false;
         this.count = state.count;
         this.teasePlayer(state.simon);
@@ -58,6 +60,7 @@ export class GameComponent implements OnInit {
   }
 
   async onStartGame() {
+    this.gameIsRunning = true;
     await sleep(200);
     this.gameStateService.generateSimon();
   }

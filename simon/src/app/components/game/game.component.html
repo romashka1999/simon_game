@@ -13,7 +13,7 @@
         <app-game-button [active]="colors.yellow" color="yellow" (guess)="onPlayerGuess($event)"></app-game-button>
     </div>
 
-    <button class="startBut" (click)="onStartGame()">START GAME</button>
+    <button class="startBut" (click)="onStartGame()" *ngIf="!gameIsRunning">START GAME</button>
 </div>
 
 
