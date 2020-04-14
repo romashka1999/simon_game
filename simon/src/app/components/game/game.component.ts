@@ -9,6 +9,7 @@ import { sleep } from 'src/app/helpers/helper';
 })
 export class GameComponent implements OnInit {
 
+  playerMove: boolean = false;
   count: number;
   colors: any = {
     red: false,
@@ -23,11 +24,12 @@ export class GameComponent implements OnInit {
     this.gameStateService.state.subscribe(state => {
       console.log(state);
       if(state.defeated) {
-        this.count = 0;
+        this.count = 1;
         alert('you defeated try again');
         return
       }
       if (this.count !== state.count) {
+        this.playerMove = false;
         this.count = state.count;
         this.teasePlayer(state.simon);
       }
@@ -35,6 +37,10 @@ export class GameComponent implements OnInit {
   }
 
   async onPlayerGuess(color: string) {
+    if(!this.playerMove){
+      alert('this is not your move')
+      return;
+    }
     this.gameStateService.playerGuess(color);
     if(this.count === this.gameStateService.count) {
       await sleep(500);
@@ -48,6 +54,7 @@ export class GameComponent implements OnInit {
       this.colors[simon[i]] = false;
       await sleep(500);
     }
+    this.playerMove = true;
   }
 
   async onStartGame() {
