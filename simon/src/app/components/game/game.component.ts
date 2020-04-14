@@ -22,6 +22,11 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     this.gameStateService.state.subscribe(state => {
       console.log(state);
+      if(state.defeated) {
+        this.count = 0;
+        alert('you defeated try again');
+        return
+      }
       if (this.count !== state.count) {
         this.count = state.count;
         this.teasePlayer(state.simon);

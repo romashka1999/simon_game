@@ -50,8 +50,12 @@ export class GameStateService {
     this.player.push(color);
     if(!this.compareSimon()) {
       this.player = [];
+      this.simon = [];
+      this.count = START_COUNT;
+      this.setState('defeated');
+    } else {
+      this.setState();
     }
-    this.setState();
   }
 
   compareSimon(): boolean {
@@ -72,11 +76,12 @@ export class GameStateService {
     this.player = [];
   }
 
-  setState() {
+  setState(gameStatus: string = 'running') {
     this.state.next({
       player: this.player,
       simon: this.simon,
-      count: this.count
+      count: this.count,
+      defeated: gameStatus === 'running'? false: true
     });
   }
 
